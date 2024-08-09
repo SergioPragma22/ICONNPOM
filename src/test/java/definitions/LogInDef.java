@@ -33,8 +33,17 @@ public class LogInDef {
 
 
     @Then("el usuario nuevo ingresa a Sevenly")
-    public void elUsuarioIngresaASevenly() {
+    public void elUsuarioNuevoIngresaASevenly() {
 
     }
 
+    @Given("Ingresa a la app e ingresa sus credenciales")
+    public void ingresaALaAppEIngresaSusCredenciales() {
+        loginSteps.loginUsuarioExistente();
+    }
+
+    @Then("el usuario ingresa a Sevenly")
+    public void elUsuarioIngresaASevenly() {
+
+    }
 }

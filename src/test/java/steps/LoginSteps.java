@@ -14,14 +14,23 @@ public class LoginSteps {
 
 
     public void ingresoCredenciales(String password){
-//        String email = Acciones.generateRandomEmail();
-        String email = "sergiotest@test.com";
+        String email = Acciones.generateRandomEmail();
+//        String email = "sergiotest@test.com";
         acciones.esperoElementoVisible(LoginUI.getInputEmail());
         acciones.escribirTexto(LoginUI.getInputEmail(), email);
         acciones.escribirTexto(LoginUI.getInputPassword(), password);
         acciones.esperoElementoHabilitado(LoginUI.getBtnSignup());
         acciones.clickBoton(LoginUI.getBtnSignup());
     }
+
+    public void loginUsuarioExistente(){
+        acciones.esperoElementoVisible(LoginUI.getInputEmail());
+        acciones.escribirTexto(LoginUI.getInputEmail(), "sergiotest@test.com");
+        acciones.escribirTexto(LoginUI.getInputPassword(), "Prueba123*");
+        acciones.esperoElementoHabilitado(LoginUI.getBtnSignup());
+        acciones.clickBoton(LoginUI.getBtnSignin());
+    }
+
 
 
 
