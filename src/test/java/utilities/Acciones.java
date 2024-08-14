@@ -1,25 +1,37 @@
 package utilities;
 
+import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.TapOptions;
+import io.appium.java_client.touch.offset.PointOption;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.core.pages.PageObject;
 import net.serenitybdd.core.pages.WebElementFacade;
+import net.thucydides.core.webdriver.WebDriverFacade;
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.time.Duration;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import static io.appium.java_client.touch.TapOptions.tapOptions;
+import static io.appium.java_client.touch.offset.PointOption.point;
+
 public class Acciones extends PageObject {
     private Logger logger = LoggerFactory.getLogger(Acciones.class);
-    private static Map<String, String> mapDatosCasoPrueba = new LinkedHashMap<>();
+    private static final Map<String, String> mapDatosCasoPrueba = new LinkedHashMap<>();
     private static final String IGNORE = "<IGNORE>";
-    private static String mensaje = "SE REALIZO ESPERA DE UN ELEMENTO";
-    private static String detalleError = "Detalle Error";
+    private static final String mensaje = "SE REALIZO ESPERA DE UN ELEMENTO";
+    private static final String detalleError = "Detalle Error";
 
     /**
      * Metodo para escribir Texto
@@ -64,13 +76,41 @@ public class Acciones extends PageObject {
     }
 
     /**
+     * Da click a una coordenada
+     */
+
+    public void clickEnCoordenada(int x, int y) {
+        try {
+            // Obtén el WebDriver y luego el AppiumDriver
+            WebDriver driver = getDriver();
+            AppiumDriver appiumDriver = (AppiumDriver) ((WebDriverFacade) driver).getProxiedDriver();
+
+            // Crear una secuencia de acciones usando W3C PointerInput
+            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+            Sequence clickAtCoordinates = new Sequence(finger, 1);
+
+            // Mover a la posición y realizar un clic
+            clickAtCoordinates.addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), x, y));
+            clickAtCoordinates.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+            clickAtCoordinates.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+            // Realizar la secuencia de acciones
+            appiumDriver.perform(Collections.singletonList(clickAtCoordinates));
+        } catch (Exception e) {
+            e.printStackTrace(); // Manejar la excepción según tus necesidades
+        }
+    }
+
+
+
+
+    /**
      * Genera un email aleatorio
      */
     public static String generateRandomEmail() {
         String uniqueID = UUID.randomUUID().toString().replace("-", "").substring(0, 10);
         return "user" + uniqueID + "@test.com";
     }
-
 
     /**
      * Espera a que cargue todos los objetos de la pagina

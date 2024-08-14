@@ -1,5 +1,6 @@
 package steps;
 
+import ui.HomeUI;
 import ui.LoginUI;
 import utilities.Acciones;
 
@@ -29,6 +30,11 @@ public class LoginSteps {
         acciones.escribirTexto(LoginUI.getInputPassword(), "Prueba123*");
         acciones.esperoElementoHabilitado(LoginUI.getBtnSignup());
         acciones.clickBoton(LoginUI.getBtnSignin());
+    }
+
+    public void ingresoExitoso(){
+        acciones.esperoElementoVisible(HomeUI.getBtnSelubicacion());
+        acciones.clickBoton(HomeUI.getBtnSelubicacion());
     }
 
 

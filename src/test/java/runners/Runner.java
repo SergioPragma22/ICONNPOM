@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
         glue = "definitions",
         snippets = CucumberOptions.SnippetType.CAMELCASE,
         plugin = "pretty",
-        tags = "@Login"
+        tags = "@Test"
 )
 
 public class Runner {
