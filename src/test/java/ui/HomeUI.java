@@ -12,6 +12,7 @@ public class HomeUI extends PageObject {
     private static final By LIST_UBICACION = By.xpath("//android.widget.EditText[@resource-id=\"undefined-input\"]");
     private static final By OPTION_LEON = By.xpath("(//android.widget.CheckedTextView[@resource-id=\"android:id/text1\"])[2]");
     private static final By BTN_GUARDAR = AppiumBy.accessibilityId("Guardar");
+    private static final By BTN_QR = By.xpath("//android.view.ViewGroup[@content-desc=\"Escanea y Gana\"]");
 
 
     public static By getBtnInvitado() {
@@ -34,10 +35,7 @@ public class HomeUI extends PageObject {
         return BTN_GUARDAR;
     }
 
-
-
-
-
-
-
+    public static By getBtnQr() {
+        return BTN_QR;
+    }
 }

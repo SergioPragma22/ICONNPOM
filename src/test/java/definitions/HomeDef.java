@@ -40,4 +40,14 @@ public class HomeDef {
     public void daClickEnSucursalesYVeElMapa() {
         homeSteps.verSucursales();
     }
+
+    @And("da click en el boton de QR")
+    public void daClickEnElBotonDeQR() {
+        homeSteps.clickQR();
+    }
+
+    @Then("muestra el login")
+    public void muestraElLogin() {
+        homeSteps.verLogin();
+    }
 }

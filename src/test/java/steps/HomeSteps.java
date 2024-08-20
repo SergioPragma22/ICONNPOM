@@ -1,6 +1,7 @@
 package steps;
 
 import ui.HomeUI;
+import ui.LoginUI;
 import ui.MenuUI;
 import utilities.Acciones;
 
@@ -19,6 +20,7 @@ public class HomeSteps {
     }
 
     public void permisosUbicacion(){
+        acciones.esperarEnSegundos();
         acciones.clickEnCoordenada(509, 1390);
         acciones.esperoElementoVisible(HomeUI.getListUbicacion());
         acciones.clickBoton(HomeUI.getListUbicacion());
@@ -38,6 +40,15 @@ public class HomeSteps {
         acciones.tomarEvidencia();
         acciones.clickBoton(MenuUI.getBtnSucursales());
         acciones.esperoElementoVisible(MenuUI.getLblMap());
+    }
+
+    public void clickQR(){
+        acciones.esperoElementoVisible(HomeUI.getBtnQr());
+        acciones.clickBoton(HomeUI.getBtnQr());
+    }
+
+    public void verLogin(){
+        acciones.esperoElementoVisible(LoginUI.getInputEmail());
     }
 
 

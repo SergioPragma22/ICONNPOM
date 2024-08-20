@@ -58,6 +58,22 @@ public class Acciones extends PageObject {
         getDriver().get(url);
     }
 
+
+    /**
+     * Espera en segundos
+     */
+    public void esperarEnSegundos() {
+        try {
+
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+
+            Thread.currentThread().interrupt();
+            mostrarInformacionEnSerenityReport("Error", "La espera fue interrumpida: " + e.getMessage());
+        }
+    }
+
+
     /**
      * Metodo para hacer click a un boton
      *

@@ -33,13 +33,8 @@ public class LoginSteps {
     }
 
     public void ingresoExitoso(){
+        acciones.esperarEnSegundos();
         acciones.esperoElementoVisible(HomeUI.getBtnSelubicacion());
-        acciones.clickBoton(HomeUI.getBtnSelubicacion());
     }
-
-
-
-
-
 
 }
